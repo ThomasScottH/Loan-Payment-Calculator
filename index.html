@@ -1,37 +1,46 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Loan Payment Calculator</title>
-
-  <input id="loanAmount" type="number" placeholder="Loan amount">
-<input id="interestRate" type="number" placeholder="Annual interest rate (%)">
-<input id="loanTerm" type="number" placeholder="Loan term (years)">
-
-<button onclick="calculatePayment()">Calculate</button>
-
-<p id="output"></p>
-
-function calculatePayment() {
-  // 3 inputs
-  let loanAmount = Number(document.getElementById("loanAmount").value);
-  let interestRate = Number(document.getElementById("interestRate").value) / 100 / 12;
-  let loanTerm = Number(document.getElementById("loanTerm").value) * 12;
-
-  // Calculate monthly payment
-  let payment = loanAmount * interestRate *
-    Math.pow(1 + interestRate, loanTerm) /
-    (Math.pow(1 + interestRate, loanTerm) - 1);
-
-  // 1 output
-  document.getElementById("output").textContent =
-    "$" + payment.toFixed(2);
-}
-
+  <title>Loan Calculator</title>
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+  <h1>Loan Payment Calculator</h1>
+
+  <label>Loan Amount:</label>
+  <input id="loanAmount" type="number" value="20000">
+
+  <label>Annual Interest Rate (%):</label>
+  <input id="interestRate" type="number" value="6">
+
+  <label>Loan Term (Years):</label>
+  <input id="loanTerm" type="number" value="5">
+
+  <button onclick="calculatePayment()">Calculate</button>
+
+  <p id="output">Your payment will appear here.</p>
+
+  <script>
+    function calculatePayment() {
+      let loanAmount = Number(document.getElementById("loanAmount").value);
+      let interestRate = Number(document.getElementById("interestRate").value) / 100 / 12;
+      let loanTerm = Number(document.getElementById("loanTerm").value) * 12;
+
+      let payment;
+
+      if (interestRate === 0) {
+        payment = loanAmount / loanTerm;
+      } else {
+        payment = loanAmount * interestRate *
+          Math.pow(1 + interestRate, loanTerm) /
+          (Math.pow(1 + interestRate, loanTerm) - 1);
+      }
+
+      document.getElementById("output").textContent =
+        "$" + payment.toFixed(2);
+    }
+  </script>
 
 </body>
 </html>
