@@ -1,1 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Payment Calculator</title>
 
+function calculatePayment() {
+  // 3 inputs
+  let loanAmount = Number(document.getElementById("loanAmount").value);
+  let interestRate = Number(document.getElementById("interestRate").value) / 100 / 12;
+  let loanTerm = Number(document.getElementById("loanTerm").value) * 12;
+
+  // Calculate monthly payment
+  let payment = loanAmount * interestRate *
+    Math.pow(1 + interestRate, loanTerm) /
+    (Math.pow(1 + interestRate, loanTerm) - 1);
+
+  // 1 output
+  document.getElementById("output").textContent =
+    "$" + payment.toFixed(2);
+}
+
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
